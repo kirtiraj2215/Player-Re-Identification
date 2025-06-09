@@ -1,0 +1,7 @@
+ultralytics
+opencv-python
+numpy
+scikit-learn
+tqdm
+deep_sort_realtime
+matplotlib
