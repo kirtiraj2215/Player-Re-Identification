@@ -1,34 +1,62 @@
-# 🏃 Player Re-Identification 
+# Player Re-Identification 
 
-This repository contains a complete pipeline for **real-time player re-identification** in a single 15-second sports video. It ensures consistent player IDs even when players leave and re-enter the frame using object detection and tracking.
+## 🎯 Task
+Identify players in a single video and ensure consistent ID assignment even if they leave and re-enter the frame.
 
-## 📁 Project Structure
+## 📁 Folder Structure
 ```
-player-reid-liat/
-├── models/                     # Pre-trained YOLOv11 model
+player-reid/
+├── src/                    # Source code modules
+│   ├── __init__.py
+│   ├── detector.py         # YOLOv11 detection logic
+│   ├── tracker.py          # Deep SORT tracking implementation
+│   ├── utils.py            # Helper functions
+│   └── visualizer.py       # Annotation and rendering
+├── models/                 # YOLOv11 fine-tuned model file
 │   └── yolov11_player.pt
-├── data/                       # Input videos
-│   └── 15sec_input_720p.mp4
-├── src/                        # Core modules
-│   ├── detector.py             # YOLOv11 detection wrapper
-│   ├── tracker.py              # DeepSORT tracking
-│   └── utils.py                # Drawing utilities
-├── run.py                      # Main execution script            
-├── requirements.txt            # Python dependencies
-├── README.md                   # Project documentation
-└── report.pdf                  # Approach and methodology
+├── data/                   # Input video
+│   └── input_video.mp4
+├── output/                 # Result video and annotations
+│   ├── output_video.mp4
+│   └── tracking_results.json
+├── requirements.txt        # Python dependencies
+├── run.py                  # Main execution script
+├── README.md              # This file
+└── report.md              # Detailed project report
 ```
----
 
-## 🚀 Getting Started
+## 🚀 Setup
 
-### 1. Clone the Repository
+### Prerequisites
+- Python 3.10+
+- CUDA-compatible GPU (recommended)
+- FFmpeg for video processing
 
+### Installation
 ```bash
-git clone https://github.com/your_username/player-reid-liat.git
-cd player-reid-liat
+# Create conda environment
+conda create -n player_reid python=3.10 -y
+conda activate player_reid
 
-### 2. Create Environment
+# Install dependencies
+pip install -r requirements.txt
+```
 
+### Dependencies
+```txt
+ultralytics>=8.0.0
+opencv-python>=4.8.0
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.24.0
+deep-sort-realtime>=1.3.2
+scipy>=1.10.0
+matplotlib>=3.7.0
+```
+
+## 🎮 Usage
+
+### Basic Run
 ```bash
-bash create_env.sh
+python run.py
+```
